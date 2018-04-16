@@ -20,7 +20,7 @@ python quant_test.py --model_architecture dnn --model_size_info 144 144 144 --dc
 cp weights.h /home/embedded/ML-KWS-for-MCU/Deployment/Source/DNN/dnn_weights.h
 ```
 
-## Moify the dnn.cpp file as follow:
+## Modify the dnn.cpp file as follow:
 ``` C
   const q7_t DNN::ip1_wt[IP1_WT_DIM]=fc1_W_0;
   const q7_t DNN::ip1_bias[IP1_OUT_DIM]=fc1_b_0;
