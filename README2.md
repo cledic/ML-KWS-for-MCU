@@ -13,13 +13,15 @@ python freeze.py --model_architecture dnn --model_size_info 144 144 144 --dct_co
 # https://github.com/ARM-software/ML-KWS-for-MCU/issues/19
 #
 python quant_test.py --model_architecture dnn --model_size_info 144 144 144 --dct_coefficient_count 10 --window_size_ms 40 --window_stride_ms 40 --checkpoint /home/embedded/ML-KWS-for-MCU/work/DNN/DNN1/training/best/dnn_8448.ckpt-29600 --act_max 32 0 0 0 0
+```
 
-#
-# Copy the new weights.h file to the Deployment source folder:
+##Copy the new weights.h file to the Deployment source folder:
+```
 cp weights.h /home/embedded/ML-KWS-for-MCU/Deployment/Source/DNN/dnn_weights.h
+```
 
-#
-# Moify the dnn.cpp file as follow:
+##Moify the dnn.cpp file as follow:
+``` C
   const q7_t DNN::ip1_wt[IP1_WT_DIM]=fc1_W_0;
   const q7_t DNN::ip1_bias[IP1_OUT_DIM]=fc1_b_0;
   const q7_t DNN::ip2_wt[IP2_WT_DIM]=fc2_W_0;
@@ -28,9 +30,15 @@ cp weights.h /home/embedded/ML-KWS-for-MCU/Deployment/Source/DNN/dnn_weights.h
   const q7_t DNN::ip3_bias[IP3_OUT_DIM]=fc3_b_0;
   const q7_t DNN::ip4_wt[IP4_WT_DIM]=final_fc_0;
   const q7_t DNN::ip4_bias[OUT_DIM]=Variable_0;
-#
-# Thanks to Daisuke
-# https://github.com/ARM-software/ML-KWS-for-MCU/issues/19
-#
+```
+
+##Thanks to Daisuke
+##https://github.com/ARM-software/ML-KWS-for-MCU/issues/19
+
+
+##To compile again the STM32F7 discovery firmware execute:
+```
+cd /home/embedded/ML-KWS-for-MCU/Deployment/kws_realtime_test
+python -m mbed compile -m DISCO_F746NG -t GCC_ARM   --source . --source ../Source --source ../Examples/realtime_test   --source ../CMSIS_5/CMSIS/NN/Include --source ../CMSIS_5/CMSIS/NN/Source   --source ../CMSIS_5/CMSIS/DSP/Include --source ../CMSIS_5/CMSIS/DSP/Source   --source ../CMSIS_5/CMSIS/Core/Include   --profile ../release_O3.json   -j 8
 
 ```
