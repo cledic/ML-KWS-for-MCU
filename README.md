@@ -1,3 +1,6 @@
+# To rebuild the training see README2.md
+
+
 # Keyword spotting for Microcontrollers 
 
 This repository consists of the tensorflow models and training scripts used 
