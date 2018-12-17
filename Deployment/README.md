@@ -9,7 +9,7 @@ git clone https://github.com/ARM-software/CMSIS_5.git
 ```
 Install [mbed-cli](https://github.com/ARMmbed/mbed-cli) and its python dependencies.
 ```bash
-pip install mbed-cli
+sudo pip install mbed-cli
 ```
 ## Build and run a simple KWS inference 
 In this example, the KWS inference is run on the audio data provided through a .h file.
@@ -20,6 +20,7 @@ mbed new kws_simple_test --mbedlib
 Fetch the required mbed libraries for compilation.
 ```bash
 cd kws_simple_test
+mbed add mbed-os
 mbed deploy
 ```
 Compile the code for the mbed board (for example NUCLEO\_F411RE).
